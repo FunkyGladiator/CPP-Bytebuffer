@@ -8,11 +8,11 @@
 
 //Define macro for getting function signature with most popular compilers (used for making static_asserts more verbose)
 #if defined(_MSC_VER)
-#	define BYTEBUFFER_FUNCSIG __FUNCSIG__ " - "
+#   define BYTEBUFFER_FUNCSIG __FUNCSIG__ " - "
 #elif defined(__GNUC__) || defined(__clang__)
-#	define BYTEBUFFER_FUNCSIG __PRETTY_FUNCTION__ " - "
+#   define BYTEBUFFER_FUNCSIG __PRETTY_FUNCTION__ " - "
 #else
-#	define BYTEBUFFER_FUNCSIG ""
+#   define BYTEBUFFER_FUNCSIG ""
 #endif
 
 typedef uint8_t byte;
