@@ -158,7 +158,7 @@ public:
     template<typename T>
     T& put(const T& data)
     {
-        //put_data calls memcpy, memcpy is only safe for trivially_copyable types, in addition to that I check for is_copy_constructible to disable function if copy constructor has explicitly been deleted
+        //memcpy is only safe for trivially_copyable types, in addition to that I check for is_copy_constructible to disable function if copy constructor has explicitly been deleted
         static_assert(std::is_trivially_copyable<T>::value && std::is_copy_constructible<T>::value,
             BYTEBUFFER_FUNCSIG "ByteBuffer::put<T>(const T &), T must be trivially_copyable");
         return *reinterpret_cast<T*>(memcpy_append(&data, sizeof(T)));
@@ -167,7 +167,7 @@ public:
     template<typename T>
     T& put_array(const T* data, const size_t amount)
     {
-        //put_data calls memcpy, memcpy is only safe for trivially_copyable types, in addition to that I check for is_copy_constructible to disable function if copy constructor has explicitly been deleted
+        //memcpy is only safe for trivially_copyable types, in addition to that I check for is_copy_constructible to disable function if copy constructor has explicitly been deleted
         static_assert(std::is_trivially_copyable<T>::value && std::is_copy_constructible<T>::value,
             BYTEBUFFER_FUNCSIG "ByteBuffer::put<T>(const void *, const size_t), T must be trivially_copyable");
         return *reinterpret_cast<T*>(memcpy_append(data, sizeof(T) * amount));
@@ -210,7 +210,7 @@ public:
     template<typename T>
     ByteBuffer& operator<<(const T& data)
     {
-        //put_data calls memcpy, memcpy is only safe for trivially_copyable types, in addition to that I check for is_copy_constructible to disable function if copy constructor has explicitly been deleted
+        //memcpy is only safe for trivially_copyable types, in addition to that I check for is_copy_constructible to disable function if copy constructor has explicitly been deleted
         static_assert(std::is_trivially_copyable<T>::value && std::is_copy_constructible<T>::value,
             BYTEBUFFER_FUNCSIG "ByteBuffer::operator<<(const T &), T must be trivially_copyable");
         memcpy_append(&data, sizeof(T));
